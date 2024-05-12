@@ -25,7 +25,7 @@ try:
     import tkMessageBox
 except:
     import tkinter.messagebox as tkMessageBox
-from PyPDF2 import PdfFileReader, PdfFileMerger
+from PyPDF2 import PdfReader, PdfFileMerger
 try:
     from tkinter import ttk
 except:
@@ -84,7 +84,7 @@ class MyFrame(Frame):
             cleanname = oldname.rsplit('.', 1)[0] + '-clean.pdf'
             metatxt = oldname.rsplit('.', 1)[0] + '-metadata.txt'
             try:
-                reader = PdfFileReader(open(fname, "rb"))
+                reader = PdfReader(open(fname, "rb"))
             except UnicodeEncodeError as e:
                 tkMessageBox.showinfo(
                     "Error", "The chars in this filename broke this app:\n\n{}".format(oldname))
