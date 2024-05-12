@@ -1,35 +1,29 @@
-#!/usr/local/bin/python
-# -*- coding: utf-8 -*-
 # Author: James Campbell
 # Date Created: May 24th 2016
-# Date Updated: February 23rd 2019
+# Date Updated: May 9th 2024
 # What: Views, Stores, and Wipes Metadata from PDF files
 
 from __future__ import unicode_literals
 import codecs
 try:
     from tkinter import *
+    from tkinter.filedialog import askopenfilename
+    from tkinter.messagebox import showerror
+    from tkinter import ttk
+    from tkinter import Text
     py3 = True
-except:
+except ImportError:
     from Tkinter import *
+    from tkFileDialog import askopenfilename
+    from tkMessageBox import showerror
+    import ttk
+    from Tkinter import Text
     py3 = False
 try:
-    from tkinter.filedialog import askopenfilename
-except:
-    from tkFileDialog import askopenfilename
-try:
-    from tkinter.messagebox import showerror
-except:
-    from tkMessageBox import showerror
-try:
     import tkMessageBox
-except:
+except ImportError:
     import tkinter.messagebox as tkMessageBox
 from pypdf import PdfReader, PdfMerger
-try:
-    from tkinter import ttk
-except:
-    import ttk  # not python 3
 infos = ''
 
 
@@ -50,11 +44,12 @@ def center_window(width=300, height=200):
 
 
 class MyFrame(Frame):
+    """
+    This class is the main frame for the application. It contains the main menu and the buttons for the application.
+    """
 
     def __init__(self, parent):
         Frame.__init__(self)
-        #menubar = Menu(self)
-        #menubar.add_command(label="Hello!", command=self.load_file)
         self.master.minsize(width=370, height=85)
         self.master.maxsize(width=370, height=85)
         self.master.title("CLEAN PDF")
@@ -210,7 +205,7 @@ class MyFrame(Frame):
                     infos = {u'/Trapped': '', u'/Title': '', u'/Author': '', u'/Subject': '',
                              u'/Producer': '', u'/Content creator': '', u'/CreationDate': '', u'/ModDate': ''}
 
-                writr.addMetadata(infos)
+                writr.add_metadata(infos)
                 writr.write(pather + '/' + cleanname)
                 tkMessageBox.showinfo(
                     "Complete", "File cleaned and saved as:\n\n{}".format(cleanname))

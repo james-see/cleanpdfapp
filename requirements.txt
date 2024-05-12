@@ -1,1 +1,2 @@
 setuptools==38.4.0
+pypdf
