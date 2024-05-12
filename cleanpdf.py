@@ -25,7 +25,7 @@ try:
     import tkMessageBox
 except:
     import tkinter.messagebox as tkMessageBox
-from PyPDF2 import PdfReader, PdfFileMerger
+from pypdf import PdfReader, PdfMerger
 try:
     from tkinter import ttk
 except:
@@ -91,10 +91,10 @@ class MyFrame(Frame):
                 return
             # get the metadata available for the pdf - jc
             try:
-                infos = reader.getDocumentInfo()
-            except:
+                infos = reader.metadata
+            except Exception as e:
                 tkMessageBox.showinfo(
-                    "Done", "No metadata found for:\n\n{}".format(oldname))
+                    "Done", "No metadata found for:\n\n{} {}".format(oldname, e))
                 return
             # infos is now a dictionary
             cur_metadata_str = ''  # a way to show all the current metadata fields -jc
@@ -107,43 +107,40 @@ class MyFrame(Frame):
                 valued = ''.join(value.split('/', 1)
                                  [1]).encode('utf8', 'ignore')
                 try:
-                    infoed = infos[value].encode('utf8', 'ignore')
+                    infoed = infos[value]
                 except:
                     infoed = infos[value]
                 try:
-                    cur_metadata_str = cur_metadata_str + \
-                        valued.encode('utf8', 'ignore') + ' : ' + infoed + '\n'
+                    if isinstance(infoed, bytes):
+                        cur_metadata_str = cur_metadata_str + \
+                            valued.decode('utf-8', 'ignore') + ' : ' + infoed.decode('utf-8', 'ignore') + '\n'
+                    else:
+                        cur_metadata_str = cur_metadata_str + \
+                            valued.decode('utf-8', 'ignore') + ' : ' + str(infoed) + '\n'
                 except TypeError as e:  # handle weird ArrayObject error
-                    infoed = ''.join(infos[value]).encode('utf8', 'ignore')
+                    infoed = b''.join([bytes(item) if isinstance(item, bytes) else str(item).encode('utf-8') for item in infos[value]])
                     cur_metadata_str = cur_metadata_str + \
-                        valued.encode('utf8', 'ignore') + ':' + infoed + '\n'
-                except UnicodeDecodeError as e:  # handle weird ArrayObject error
-                    infoed = ''.join(infos[value])
-                    cur_metadata_str = cur_metadata_str + valued + ' : ' + infoed + '\n'
+                        valued.decode('utf-8', 'ignore') + ' : ' + infoed.decode('utf-8', 'ignore') + '\n'
             if tkMessageBox.askyesno("Proceed", "Found {} items in metadata. \n{}\nProceed to store metadata?".format(len(infos), cur_metadata_str, cleanname)):
                 with codecs.open(pather + '/' + metatxt, 'w', encoding='utf8') as metasavefile:
                     for v in olddict:
                         try:
-                            vchanged = v.split(
-                                '/', 1)[1].encode('utf8', 'ignore')
-                        except:
-                            vchanged = v.split('/', 1)[1]
-                        try:
-                            metasavefile.write(vchanged.encode(
-                                'utf8', 'ignore') + ',' + olddict[v].encode('utf8', 'ignore') + '\n')
+                            # Ensure both parts are strings before concatenation
+                            vchanged_str = v.split('/', 1)[1].decode('utf-8', 'ignore') if isinstance(v.split('/', 1)[1], bytes) else str(v.split('/', 1)[1])
+                            value_str = olddict[v].decode('utf-8', 'ignore') if isinstance(olddict[v], bytes) else str(olddict[v])
+                            metasavefile.write(vchanged_str + ',' + value_str + '\n')
                         except TypeError as e:
-                            infoed = ''.join(olddict[v]).encode(
-                                'utf8', 'ignore')
-                            metasavefile.write(vchanged.encode(
-                                'utf8', 'ignore') + ',' + infoed + '\n')
+                            # Handle any other type errors
+                            infoed = str(olddict[v])
+                            metasavefile.write(vchanged_str + ',' + infoed + '\n')
                         except AttributeError as e:
-                            infoed = ''.join(olddict[v]).encode(
-                                'utf8', 'ignore')
-                            metasavefile.write(vchanged.encode(
-                                'utf8', 'ignore') + ',' + infoed + '\n')
+                            # Handle attribute errors if any
+                            infoed = str(olddict[v])
+                            metasavefile.write(vchanged_str + ',' + infoed + '\n')
                         except UnicodeDecodeError as e:
-                            infoed = ''.join(olddict[v])
-                            metasavefile.write(vchanged + ',' + infoed + '\n')
+                            # Handle decoding errors
+                            infoed = str(olddict[v])
+                            metasavefile.write(vchanged_str + ',' + infoed + '\n')
                 tkMessageBox.showinfo("Complete", "Metadata saved as\n{}".format(
                     pather + '/' + metatxt, 'w'))
                 return
@@ -164,17 +161,17 @@ class MyFrame(Frame):
             cleanname = oldname.rsplit('.', 1)[0] + '-clean.pdf'
             metatxt = oldname.rsplit('.', 1)[0] + '-metadata.txt'
             try:
-                reader = PdfFileReader(open(fname, "rb"))
+                reader = PdfReader(open(fname, "rb"))
             except UnicodeEncodeError as e:
                 tkMessageBox.showinfo(
                     "Error", "The chars in this filename broke this app:\n\n{}".format(oldname))
                 return
             # get the metadata available for the pdf - jc
             try:
-                infos = reader.getDocumentInfo()
-            except:
+                infos = reader.metadata
+            except Exception as e:
                 tkMessageBox.showinfo(
-                    "Done", "No metadata found for:\n\n{}".format(oldname))
+                    "Done", "No metadata found for:\n\n{} {}".format(oldname, e))
                 return
             # infos is now a dictionary
             cur_metadata_str = ''  # a way to show all the current metadata fields -jc
@@ -187,24 +184,25 @@ class MyFrame(Frame):
                 valued = ''.join(value.split('/', 1)
                                  [1]).encode('utf8', 'ignore')
                 try:
-                    infoed = infos[value].encode('utf8', 'ignore')
+                    infoed = infos[value]
                 except:
                     infoed = infos[value]
                 try:
-                    cur_metadata_str = cur_metadata_str + \
-                        valued.encode('utf8', 'ignore') + ' : ' + infoed + '\n'
+                    if isinstance(infoed, bytes):
+                        cur_metadata_str = cur_metadata_str + \
+                            valued.decode('utf-8', 'ignore') + ' : ' + infoed.decode('utf-8', 'ignore') + '\n'
+                    else:
+                        cur_metadata_str = cur_metadata_str + \
+                            valued.decode('utf-8', 'ignore') + ' : ' + str(infoed) + '\n'
                 except TypeError as e:  # handle weird ArrayObject error
-                    infoed = ''.join(infos[value]).encode('utf8', 'ignore')
+                    infoed = b''.join([bytes(item) if isinstance(item, bytes) else str(item).encode('utf-8') for item in infos[value]])
                     cur_metadata_str = cur_metadata_str + \
-                        valued.encode('utf8', 'ignore') + ':' + infoed + '\n'
-                except UnicodeDecodeError as e:  # handle weird ArrayObject error
-                    infoed = ''.join(infos[value])
-                    cur_metadata_str = cur_metadata_str + valued + ' : ' + infoed + '\n'
+                        valued.decode('utf-8', 'ignore') + ' : ' + infoed.decode('utf-8', 'ignore') + '\n'
             if tkMessageBox.askyesno("Proceed", "Found {} items in metadata. \n{}\nProceed to wipe metadata?\n File will be saved as:\n\n{}".format(len(infos), cur_metadata_str, cleanname)):
 
                 # create a new merge object and append
                 # the opened data to it with updated blank infos -jc
-                writr = PdfFileMerger()
+                writr = PdfMerger()
                 writr.append(reader)
                 if len(infos) > 0:
                     infos = cleandict
