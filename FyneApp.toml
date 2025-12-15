@@ -1,0 +1,9 @@
+[Details]
+Icon = "Icon.png"
+Name = "Clean PDF"
+ID = "us.jamescampbell.cleanpdf"
+Version = "2.0.0"
+Build = 1
+
+[Files]
+

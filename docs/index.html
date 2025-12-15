@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clean PDF - Wipe Metadata from PDF Files</title>
+    <meta name="description" content="A fast, native desktop app to view and remove metadata from PDF files. Available for macOS, Windows, and Linux.">
+    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="grain-overlay"></div>
+    
+    <header>
+        <nav>
+            <a href="#" class="logo">
+                <span class="logo-icon">◇</span>
+                <span>Clean PDF</span>
+            </a>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#download">Download</a>
+                <a href="https://github.com/james-see/cleanpdfapp" target="_blank" rel="noopener">GitHub</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <div class="badge">v2.0 — Now in Go</div>
+                <h1>Your PDFs,<br><span class="accent">squeaky clean.</span></h1>
+                <p class="hero-subtitle">
+                    View, analyze, and wipe metadata from PDF files in seconds. 
+                    Fast, native, and privacy-focused.
+                </p>
+                <div class="hero-cta">
+                    <a href="#download" class="btn btn-primary">
+                        <span class="btn-icon">↓</span>
+                        Download Now
+                    </a>
+                    <a href="https://github.com/james-see/cleanpdfapp" class="btn btn-secondary" target="_blank" rel="noopener">
+                        View Source
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="app-window">
+                    <div class="window-chrome">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                        <span class="window-title">CLEAN PDF</span>
+                    </div>
+                    <div class="window-content">
+                        <p class="window-label">Select a PDF to analyze or clean:</p>
+                        <button class="mock-btn analyze">ANALYZE MODE - Select PDF to view metadata</button>
+                        <button class="mock-btn clean">CLEAN MODE - Select PDF to wipe metadata</button>
+                    </div>
+                </div>
+                <div class="floating-badge badge-1">No tracking</div>
+                <div class="floating-badge badge-2">Open source</div>
+                <div class="floating-badge badge-3">Native speed</div>
+            </div>
+        </section>
+
+        <section class="features" id="features">
+            <h2>Two modes.<br>Zero complexity.</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon analyze-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="m21 21-4.35-4.35"/>
+                        </svg>
+                    </div>
+                    <h3>Analyze Mode</h3>
+                    <p>Inspect all metadata hidden in your PDFs — author, creation date, software used, and more. Export it to a text file for your records.</p>
+                    <ul class="feature-list">
+                        <li>View all metadata fields</li>
+                        <li>Export to text file</li>
+                        <li>Non-destructive inspection</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon clean-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 6h18"/>
+                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                        </svg>
+                    </div>
+                    <h3>Clean Mode</h3>
+                    <p>Wipe all metadata from your PDF and save a pristine copy. Perfect for sharing documents without revealing your digital footprint.</p>
+                    <ul class="feature-list">
+                        <li>Complete metadata removal</li>
+                        <li>Creates clean copy (*-clean.pdf)</li>
+                        <li>Original file untouched</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="platforms">
+            <h2>Cross-platform.<br>Native performance.</h2>
+            <p class="platforms-subtitle">Built with Go and Fyne for a truly native experience on every OS.</p>
+            <div class="platform-grid">
+                <div class="platform-card">
+                    <div class="platform-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                        </svg>
+                    </div>
+                    <h4>macOS</h4>
+                    <p>Universal binary for Intel & Apple Silicon</p>
+                </div>
+                <div class="platform-card">
+                    <div class="platform-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M3 12V6.75l9-3.75 9 3.75V12h-4v6.75l-5 2.25-5-2.25V12H3zm2 0h2v5.25l4 1.8 4-1.8V12h2V8.25L12 5.7l-5 2.55V12z"/>
+                        </svg>
+                    </div>
+                    <h4>Windows</h4>
+                    <p>Native executable, no runtime needed</p>
+                </div>
+                <div class="platform-card">
+                    <div class="platform-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12.504 0c-.155 0-.31.007-.465.022a3.87 3.87 0 00-.513.058c-.63.113-1.28.372-1.817.787a4.28 4.28 0 00-1.06 1.157c-.353.567-.551 1.215-.591 1.878-.04.663.047 1.336.262 1.968.215.631.556 1.213 1.006 1.694.45.48.998.847 1.602 1.07.604.223 1.24.3 1.867.228.627-.072 1.227-.29 1.75-.626.523-.337.962-.786 1.28-1.312.318-.527.51-1.126.561-1.745.051-.62-.04-1.248-.264-1.834-.224-.586-.576-1.113-1.031-1.547-.456-.433-1.003-.76-1.599-.951A4.61 4.61 0 0012.504 0zm-.493 1.983c.306-.029.616.003.912.094.297.09.573.237.811.43.238.194.433.432.574.7.142.268.227.563.252.866.025.302-.012.608-.109.895-.097.287-.25.552-.45.78-.2.227-.443.413-.714.546-.272.133-.567.21-.869.227-.301.017-.603-.027-.885-.128-.282-.1-.54-.254-.758-.453-.217-.198-.389-.438-.504-.706-.116-.268-.172-.558-.166-.85.006-.29.073-.578.199-.84.126-.262.308-.494.533-.68.226-.186.49-.322.774-.396.284-.074.58-.088.87-.06.005 0 .01 0 .015.001-.005 0-.01-.001-.015-.001zM9.5 7.5v9h1.5v-9zm3 0v9H14v-9zm-6 1.5v6h1.5v-6zm9 0v6H17v-6zM6 15v2.5c0 .837.263 1.612.71 2.25.446.637 1.066 1.126 1.778 1.438.712.312 1.503.437 2.287.362.784-.075 1.528-.348 2.154-.79.625-.44 1.11-1.038 1.403-1.732.293-.694.385-1.455.267-2.197-.118-.743-.441-1.44-.933-2.011-.492-.572-1.133-.998-1.853-1.235-.72-.237-1.495-.278-2.238-.118-.743.16-1.428.517-1.982 1.032-.554.515-.96 1.168-1.173 1.89-.213.721-.223 1.487-.03 2.214.193.727.585 1.388 1.132 1.914.547.526 1.227.9 1.968 1.082.74.181 1.517.165 2.249-.048.731-.212 1.393-.617 1.913-1.17.52-.552.878-1.234 1.034-1.97.157-.737.107-1.5-.144-2.21-.25-.708-.689-1.336-1.27-1.818-.582-.483-1.284-.8-2.03-.92-.747-.12-1.51-.038-2.21.239-.7.278-1.31.747-1.765 1.356-.455.61-.74 1.338-.823 2.1-.083.763.04 1.534.356 2.227.316.694.817 1.287 1.449 1.716.632.43 1.372.682 2.14.73.77.05 1.538-.108 2.224-.456.686-.348 1.27-.875 1.69-1.526.42-.65.663-1.404.703-2.18.04-.777-.125-1.55-.48-2.24-.356-.692-.893-1.278-1.554-1.698-.662-.42-1.427-.66-2.213-.696-.787-.035-1.572.138-2.274.5-.701.361-1.295.9-1.717 1.563-.422.663-.658 1.427-.683 2.21-.025.784.162 1.56.542 2.247.38.687.939 1.264 1.619 1.67.68.405 1.458.626 2.25.64.79.013 1.574-.185 2.268-.572.694-.388 1.273-.954 1.677-1.64.403-.686.617-1.468.618-2.263 0-.795-.213-1.577-.616-2.264-.404-.687-.983-1.253-1.677-1.641-.694-.388-1.478-.586-2.268-.573-.79.014-1.569.235-2.249.64-.68.406-1.24.983-1.62 1.67-.38.687-.567 1.463-.542 2.247.025.783.261 1.547.683 2.21.422.663 1.016 1.202 1.717 1.563.702.362 1.487.535 2.274.5.786-.036 1.55-.276 2.213-.696.661-.42 1.198-1.006 1.554-1.698.355-.69.52-1.463.48-2.24-.04-.776-.283-1.53-.703-2.18-.42-.651-1.004-1.178-1.69-1.526-.686-.348-1.454-.506-2.224-.456-.768.048-1.508.3-2.14.73-.632.429-1.133 1.022-1.449 1.716-.316.693-.44 1.464-.356 2.227.083.762.368 1.49.823 2.1.455.609 1.065 1.078 1.765 1.356.7.277 1.463.36 2.21.239.746-.12 1.448-.437 2.03-.92.581-.482 1.02-1.11 1.27-1.818.251-.71.301-1.473.144-2.21-.156-.736-.514-1.418-1.034-1.97-.52-.553-1.182-.958-1.913-1.17-.732-.213-1.509-.229-2.249-.048-.74.182-1.42.556-1.968 1.082-.547.526-.939 1.187-1.132 1.914-.193.727-.183 1.493.03 2.214.213.722.619 1.375 1.173 1.89.554.515 1.24.872 1.982 1.032.743.16 1.518.119 2.238-.118.72-.237 1.361-.663 1.853-1.235.492-.571.815-1.268.933-2.011.118-.742.026-1.503-.267-2.197-.293-.694-.778-1.292-1.403-1.732-.626-.442-1.37-.715-2.154-.79-.784-.075-1.575.05-2.287.362-.712.312-1.332.801-1.778 1.438-.447.638-.71 1.413-.71 2.25V15H6z"/>
+                        </svg>
+                    </div>
+                    <h4>Linux</h4>
+                    <p>Portable binary for x86_64</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="download" id="download">
+            <h2>Get Clean PDF</h2>
+            <div class="download-options">
+                <div class="download-card primary">
+                    <div class="download-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                        </svg>
+                    </div>
+                    <h3>macOS</h3>
+                    <p>Install via Homebrew (recommended)</p>
+                    <code class="install-cmd">brew install james-see/tap/cleanpdf</code>
+                    <span class="divider">or</span>
+                    <a href="https://github.com/james-see/cleanpdfapp/releases/latest" class="btn btn-outline">
+                        Download .app
+                    </a>
+                </div>
+                <div class="download-card">
+                    <div class="download-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M3 12V6.75l9-3.75 9 3.75V12h-4v6.75l-5 2.25-5-2.25V12H3zm2 0h2v5.25l4 1.8 4-1.8V12h2V8.25L12 5.7l-5 2.55V12z"/>
+                        </svg>
+                    </div>
+                    <h3>Windows</h3>
+                    <a href="https://github.com/james-see/cleanpdfapp/releases/latest" class="btn btn-outline">
+                        Download .exe
+                    </a>
+                </div>
+                <div class="download-card">
+                    <div class="download-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12.504 0c-.155 0-.31.007-.465.022-3.614.35-6.42 3.38-6.42 7.043 0 3.89 3.154 7.044 7.044 7.044 3.663 0 6.693-2.806 7.043-6.42.015-.155.022-.31.022-.465 0-3.89-3.154-7.044-7.044-7.044-.06 0-.12.001-.18.003zm0 1.983c2.776 0 5.031 2.255 5.031 5.031s-2.255 5.031-5.031 5.031-5.031-2.255-5.031-5.031 2.255-5.031 5.031-5.031zM9.5 7.5v9h1.5v-9zm3 0v9H14v-9zm-6 1.5v6h1.5v-6zm9 0v6H17v-6z"/>
+                        </svg>
+                    </div>
+                    <h3>Linux</h3>
+                    <a href="https://github.com/james-see/cleanpdfapp/releases/latest" class="btn btn-outline">
+                        Download .tar.gz
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-left">
+                <span class="logo-icon">◇</span>
+                <span>Clean PDF</span>
+                <span class="footer-sep">·</span>
+                <span>Made by <a href="https://github.com/james-see" target="_blank" rel="noopener">James Campbell</a></span>
+            </div>
+            <div class="footer-right">
+                <a href="https://github.com/james-see/cleanpdfapp" target="_blank" rel="noopener">Source Code</a>
+                <span class="footer-sep">·</span>
+                <span>MIT License</span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
