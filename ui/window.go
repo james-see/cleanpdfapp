@@ -21,8 +21,6 @@ func Run() {
 	a.Settings().SetTheme(theme.DefaultTheme())
 
 	w := a.NewWindow("CLEAN PDF")
-	w.Resize(fyne.NewSize(600, 250))
-	w.SetMinSize(fyne.NewSize(450, 180))
 	w.CenterOnScreen()
 
 	// Create styled buttons
@@ -36,7 +34,7 @@ func Run() {
 	})
 	cleanBtn.Importance = widget.MediumImportance
 
-	// Layout
+	// Layout with spacers to enforce minimum size
 	content := container.NewVBox(
 		widget.NewLabel("Select a PDF to analyze or clean:"),
 		analyzeBtn,
@@ -44,6 +42,7 @@ func Run() {
 	)
 
 	w.SetContent(container.NewPadded(content))
+	w.Resize(fyne.NewSize(1024, 768))
 	w.ShowAndRun()
 }
 
