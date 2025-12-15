@@ -21,8 +21,8 @@ func Run() {
 	a.Settings().SetTheme(theme.DefaultTheme())
 
 	w := a.NewWindow("CLEAN PDF")
-	w.Resize(fyne.NewSize(420, 130))
-	w.SetFixedSize(true)
+	w.Resize(fyne.NewSize(600, 250))
+	w.SetMinSize(fyne.NewSize(450, 180))
 	w.CenterOnScreen()
 
 	// Create styled buttons
@@ -63,6 +63,7 @@ func showAnalyzeDialog(w fyne.Window) {
 	}, w)
 
 	fd.SetFilter(&pdfFilter{})
+	fd.Resize(fyne.NewSize(800, 600))
 	fd.Show()
 }
 
@@ -114,6 +115,7 @@ func showCleanDialog(w fyne.Window) {
 	}, w)
 
 	fd.SetFilter(&pdfFilter{})
+	fd.Resize(fyne.NewSize(800, 600))
 	fd.Show()
 }
 
